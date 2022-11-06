@@ -10,7 +10,7 @@ export default class ShoesShop extends Component {
     cart: [],
   };
 
-  ShoesList = [
+  shoesList = [
     {
       id: 1,
       name: "Adidas Prophere",
@@ -157,7 +157,7 @@ export default class ShoesShop extends Component {
     this.setState({ selectedItem: childItem });
   };
   renderShoes = () => {
-    const html = this.ShoesList.map((item) => {
+    const html = this.shoesList.map((item) => {
       return (
         <div key={item.id} className={styles.col}>
           <Shoes
