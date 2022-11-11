@@ -211,7 +211,7 @@ export default class ShoesShop extends Component {
       cart: cloneCart,
     });
   };
-  // Tăng giảm số lượng
+  // Tăng số lượng
   addQuantity = (id) => {
     const cloneCart = [...this.state.cart];
     const foundItem = cloneCart.find((item) => id === item.prod.id);
@@ -222,7 +222,7 @@ export default class ShoesShop extends Component {
       cart: cloneCart,
     });
   };
-  // Giảm giảm số lượng
+  // Giảm số lượng
   deductQuantity = (id) => {
     const cloneCart = [...this.state.cart];
     const foundItem = cloneCart.find((item) => id === item.prod.id);
@@ -243,6 +243,7 @@ export default class ShoesShop extends Component {
     this.setState({
       cart: [],
     });
+    alert("Thanh toán thành công");
   };
 
   countShoes = () => {
@@ -250,7 +251,12 @@ export default class ShoesShop extends Component {
       return total + item.quantity;
     }, 0);
   };
-
+  //close detail
+  closeDetail = () => {
+    this.setState({
+      selectedItem: null,
+    });
+  };
   // render
   render() {
     return (
@@ -267,12 +273,13 @@ export default class ShoesShop extends Component {
           </h3>
           <h2 className={styles.title}>Shoes Shop</h2>
           <div className={styles.row}>{this.renderShoes()}</div>
-          <div>
-            {this.state.selectedItem ? (
-              <ShoesDetails item={this.state.selectedItem} />
-            ) : null}
-          </div>
         </div>
+        {this.state.selectedItem ? (
+          <ShoesDetails
+            item={this.state.selectedItem}
+            closeDetail={this.closeDetail}
+          />
+        ) : null}
         {this.state.isShowCart && (
           <Cart
             hideCart={this.hideCart}
